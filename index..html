@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Portfolio | ประวัติส่วนตัวและผลงานวิชาการ</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#16a34a',
+                            600: '#15803d',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        academic: {
+                            navy: '#0f172a',
+                            slate: '#334155',
+                            light: '#f8fafc',
+                            accent: '#2563eb'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Sarabun', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Inter & Sarabun for Thai/English support -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', 'Sarabun', sans-serif;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white; color: black; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- Header / Navigation Bar -->
+    <header class="sticky top-0 z-50 glass-nav bg-white/80 dark:bg-slate-900/80 border-b border-slate-200/80 dark:border-slate-800/80 transition-all duration-300 no-print">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo / Academic Title -->
+                <a href="#" class="font-semibold text-lg tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+                    <span class="p-1.5 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 rounded-md text-xs font-bold">AC</span>
+                    <span>Academic Portfolio</span>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                    <a href="#about" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">เกี่ยวกับ</a>
+                    <a href="#education" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">การศึกษา</a>
+                    <a href="#experience" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">การทำงาน</a>
+                    <a href="#publications" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">ผลงานวิชาการ</a>
+                    <a href="#grants" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">ทุนวิจัย</a>
+                    <a href="#teaching" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">การสอน</a>
+                    <a href="#contact" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">ติดต่อ</a>
+                </nav>
+
+                <!-- Actions: Dark Mode & Mobile Menu Button -->
+                <div class="flex items-center space-x-3">
+                    <!-- GitHub Pages Deployment Guide Button -->
+                    <button onclick="toggleGithubModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                        <i class="fab font-bold fa-github"></i>
+                        <span>คู่มือ GitHub Pages</span>
+                    </button>
+
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" type="button" aria-label="Toggle Dark Mode" class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                        <i id="theme-toggle-dark-icon" class="fas fa-moon hidden"></i>
+                        <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" type="button" aria-label="Open Navigation Menu" class="md:hidden p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-2 pb-4 space-y-2 text-sm">
+            <a href="#about" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-blue-600">เกี่ยวกับ</a>
+            <a href="#education" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-blue-600">การศึกษา</a>
+            <a href="#experience" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-blue-600">การทำงาน</a>
+            <a href="#publications" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-blue-600">ผลงานวิชาการ</a>
+            <a href="#grants" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-blue-600">ทุนวิจัย</a>
+            <a href="#teaching" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-blue-600">การสอน</a>
+            <a href="#contact" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-blue-600">ติดต่อ</a>
+            <button onclick="toggleGithubModal()" class="w-full text-left py-2 text-blue-600 font-medium">
+                <i class="fab fa-github mr-1"></i> วิธีใช้งานบน GitHub Pages
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+
+        <!-- Hero / Profile Section -->
+        <section id="about" class="pt-4 scroll-mt-24">
+            <div class="bg-white dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 rounded-2xl p-6 sm:p-8 shadow-sm">
+                <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                    <!-- Profile Picture / Placeholder -->
+                    <div class="relative group flex-shrink-0">
+                        <img class="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl object-cover ring-4 ring-slate-100 dark:ring-slate-700/80 shadow-md" 
+                             src="https://placehold.co/400x400/334155/FFFFFF?text=Academic+Photo" 
+                             alt="รูปถ่ายอาจารย์ / นักวิจัย"
+                             onerror="this.src='https://placehold.co/400x400/1e293b/ffffff?text=Profile'">
+                        <div class="absolute -bottom-2 -right-2 bg-blue-600 text-white p-2 rounded-xl text-xs shadow-md flex items-center justify-center">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+
+                    <!-- Profile Info -->
+                    <div class="flex-grow text-center md:text-left space-y-4">
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-200/50 dark:border-blue-800/50 mb-3">
+                                <i class="fas fa-graduation-cap"></i> อาจารย์ประจำ / นักวิจัย
+                            </div>
+                            <h1 class="text-2xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
+                                ผศ. ดร. สมชาย ใจดี
+                            </h1>
+                            <p class="text-lg text-slate-600 dark:text-slate-300 mt-1 font-medium">
+                                Assistant Professor Dr. Somchai Jaidee
+                            </p>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                                ภาควิชาวิทยาการคอมพิวเตอร์ คณะวิทยาศาสตร์ มหาวิทยาลัยธรรมศาสตร์
+                            </p>
+                        </div>
+
+                        <!-- Bio / Statement -->
+                        <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                            ความเชี่ยวชาญและงานวิจัยมุ่งเน้นในด้าน **ปัญญาประดิษฐ์ (Artificial Intelligence)**, **การประมวลผลภาษาธรรมชาติ (Natural Language Processing)** และ **วิทยาการข้อมูลทางการแพทย์ (Medical Data Science)** มีความมุ่งมั่นในการประยุกต์ใช้นวัตกรรมทางเทคโนโลยีเพื่อแก้ปัญหาจริงในสังคมและสุขภาพ
+                        </p>
+
+                        <!-- Research Focus Tags -->
+                        <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                            <span class="px-2.5 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700/60 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600">Machine Learning</span>
+                            <span class="px-2.5 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700/60 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600">Natural Language Processing</span>
+                            <span class="px-2.5 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700/60 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600">Deep Learning</span>
+                            <span class="px-2.5 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-700/60 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600">Health Informatics</span>
+                        </div>
+
+                        <!-- Academic Social & Contact Links -->
+                        <div class="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-3">
+                            <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium shadow-sm transition-colors">
+                                <i class="fas fa-envelope"></i> ติดต่อ
+                            </a>
+                            <a href="#" onclick="alert('ดาวน์โหลดไฟล์ CV (โปรดใส่ลิงก์ PDF ของคุณ)')" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-100 text-sm font-medium transition-colors">
+                                <i class="fas fa-file-pdf text-red-500"></i> ดาวน์โหลด CV
+                            </a>
+
+                            <!-- Social Icons -->
+                            <div class="flex items-center space-x-2 pl-2 border-l border-slate-200 dark:border-slate-700">
+                                <a href="https://scholar.google.com" target="_blank" title="Google Scholar" class="p-2 text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors">
+                                    <i class="fas fa-graduation-cap text-lg"></i>
+                                </a>
+                                <a href="https://orcid.org" target="_blank" title="ORCID" class="p-2 text-slate-500 hover:text-green-600 dark:text-slate-400 dark:hover:text-green-400 transition-colors">
+                                    <i class="fab fa-orcid text-lg"></i>
+                                </a>
+                                <a href="https://github.com" target="_blank" title="GitHub" class="p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                                    <i class="fab fa-github text-lg"></i>
+                                </a>
+                                <a href="https://linkedin.com" target="_blank" title="LinkedIn" class="p-2 text-slate-500 hover:text-blue-700 dark:text-slate-400 dark:hover:text-blue-300 transition-colors">
+                                    <i class="fab fa-linkedin text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="scroll-mt-24 space-y-6">
+            <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+                <div class="p-2 bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 rounded-lg">
+                    <i class="fas fa-user-graduate text-lg"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white">ประวัติการศึกษา</h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Education Background</p>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="relative pl-6 sm:pl-8 border-l-2 border-slate-200 dark:border-slate-700 space-y-8 ml-2 sm:ml-4">
+                
+                <!-- Item 1: Ph.D. -->
+                <div class="relative group">
+                    <!-- Dot Marker -->
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-blue-600 border-4 border-slate-50 dark:border-slate-900 shadow-sm"></div>
+                    
+                    <div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 rounded-xl p-5 shadow-sm hover:border-blue-400 dark:hover:border-blue-500 transition-colors">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">ปรัชญาดุษฎีบัณฑิต (ปร.ด.) วิทยาการคอมพิวเตอร์</h3>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 w-fit">
+                                2560 - 2564
+                            </span>
+                        </div>
+                        <p class="text-sm font-medium text-blue-600 dark:text-blue-400 mb-2">
+                            จุฬาลงกรณ์มหาวิทยาลัย (Chulalongkorn University)
+                        </p>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                            <strong>หัวข้อวิทยานิพนธ์:</strong> การประยุกต์ใช้โมเดลภาษาขนาดใหญ่ร่วมกับเทคนิคการเรียนรู้เชิงลึกเพื่อวิเคราะห์ข้อความทางการแพทย์ภาษาไทย
+                        </p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                            อาจารย์ที่ปรึกษา: ศ. ดร. วิจัย พัฒนากุล | ได้รับทุน คปก. (RGJ Ph.D. Programme)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 2: Master Degree -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 border-4 border-slate-50 dark:border-slate-900"></div>
+                    
+                    <div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 rounded-xl p-5 shadow-sm hover:border-blue-400 dark:hover:border-blue-500 transition-colors">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">วิทยาศาสตรมหาบัณฑิต (วท.ม.) เทคโนโลยีสารสนเทศ</h3>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 w-fit">
+                                2557 - 2559
+                            </span>
+                        </div>
+                        <p class="text-sm font-medium text-blue-600 dark:text-blue-400 mb-2">
+                            มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี (KMUTT)
+                        </p>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                            <strong>หัวข้อวิทยานิพนธ์:</strong> ระบบแนะนำบทความวิชาการอัตโนมัติด้วยอัลกอริทึมการกรองแบบร่วมมือ
+                        </p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                            เกียรตินิยม / ผลงานวิทยานิพนธ์ดีเด่น
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 3: Bachelor Degree -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 border-4 border-slate-50 dark:border-slate-900"></div>
+                    
+                    <div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 rounded-xl p-5 shadow-sm hover:border-blue-400 dark:hover:border-blue-500 transition-colors">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">วิทยาศาสตรบัณฑิต (วท.บ.) วิทยาการคอมพิวเตอร์</h3>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 w-fit">
+                                2553 - 2557
+                            </span>
+                        </div>
+                        <p class="text-sm font-medium text-blue-600 dark:text-blue-400 mb-2">
+                            มหาวิทยาลัยธรรมศาสตร์ (Thammasat University)
+                        </p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">
+                            เกียรตินิยมอันดับ 1 (GPA 3.85)
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="scroll-mt-24 space-y-6">
+            <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+                <div class="p-2 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 rounded-lg">
+                    <i class="fas fa-briefcase text-lg"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white">ประวัติการทำงานและตำแหน่งวิชาการ</h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Academic & Professional Experience</p>
+                </div>
+            </div>
+
+            <div class="grid gap-4 sm:grid-cols-1">
+                
+                <!-- Position 1 -->
+                <div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 rounded-xl p-5 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white">ผู้ช่วยศาสตราจารย์ (Assistant Professor)</h3>
+                            <p class="text-sm text-indigo-600 dark:text-indigo-400 font-medium">ภาควิชาวิทยาการคอมพิวเตอร์ คณะวิทยาศาสตร์ มหาวิทยาลัยธรรมศาสตร์</p>
+                        </div>
+                        <span class="inline-flex px-3 py-1 text-xs font-medium bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 rounded-full w-fit">
+                            2565 - ปัจจุบัน
+                        </span>
+                    </div>
+                    <ul class="list-disc list-inside text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-1 mt-3">
+                        <li>รับผิดชอบการสอนรายวิชาโครงสร้างข้อมูลและอัลกอริทึม (Data Structures & Algorithms) และการเรียนรู้ของเครื่อง (Machine Learning)</li>
+                        <li>หัวหน้าห้องปฏิบัติการวิจัยปัญญาประดิษฐ์ประยุกต์ (Applied AI Research Lab)</li>
+                        <li>อาจารย์ที่ปรึกษาวิทยานิพนธ์ระดับปริญญาโทและเอก</li>
+                    </ul>
+                </div>
+
+                <!-- Position 2 -->
+                <div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 rounded-xl p-5 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white">นักวิจัยหลังปริญญาเอก (Postdoctoral Researcher)</h3>
+                            <p class="text-sm text-indigo-600 dark:text-indigo-400 font-medium">National Institute of Informatics (NII), Tokyo, Japan</p>
+                        </div>
+                        <span class="inline-flex px-3 py-1 text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full w-fit">
+                            2564 - 2565
+                        </span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2">
+                        ทำการวิจัยด้าน Cross-lingual Natural Language Processing และพัฒนาระบบประมวลผลข้อความหลายภาษาในภูมิภาคเอเชียตะวันออกเฉียงใต้
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="scroll-mt-24 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-3">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 rounded-lg">
+                        <i class="fas fa-book-open text-lg"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 dark:text-white">ผลงานวิชาการและงานวิจัย</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Publications & Scholarly Works</p>
+                    </div>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl text-xs font-medium">
+                    <button onclick="filterPubs('all')" class="pub-tab px-3 py-1.5 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm transition-all" id="tab-all">ทั้งหมด</button>
+                    <button onclick="filterPubs('journal')" class="pub-tab px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 transition-all" id="tab-journal">วารสารวิชาการ (Journal)</button>
+                    <button onclick="filterPubs('conference')" class="pub-tab px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 transition-all" id="tab-conference">ประชุมวิชาการ (Conference)</button>
+                </div>
+            </div>
+
+            <!-- Publications List -->
+            <div class="space-y-4">
+
+                <!-- Publication 1 -->
+                <div class="pub-item journal bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 rounded-xl p-5 shadow-sm space-y-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 text-[10px] font-bold rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300">Journal Article</span>
+                        <span class="px-2 py-0.5 text-[10px] font-bold rounded bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300">Scopus Q1</span>
+                        <span class="text-xs text-slate-400 ml-auto">ปี 2024</span>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white leading-snug">
+                        Jaidee, S., Pattanakul, V., & Smith, A. (2024). ThaiMedBERT: A Pre-trained Language Model for Thai Clinical Text Processing and Named Entity Recognition.
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 italic">
+                        IEEE Journal of Biomedical and Health Informatics (J-BHI), Vol. 28, No. 3, pp. 1450-1462.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 pt-2 text-xs">
+                        <a href="https://doi.org/10.1000/example" target="_blank" class="text-blue-600 dark:text-blue-400 font-medium hover:underline flex items-center gap-1">
+                            <i class="fas fa-external-link-alt"></i> DOI: 10.1000/example
+                        </a>
+                        <button onclick="copyBibtex('bib1')" class="text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 flex items-center gap-1">
+                            <i class="fas fa-quote-right"></i> BibTeX
+                        </button>
+                    </div>
+                    <!-- Hidden BibTeX Code -->
+                    <textarea id="bib1" class="hidden">
+@article{jaidee2024thaimedbert,
+  title={ThaiMedBERT: A Pre-trained Language Model for Thai Clinical Text Processing},
+  author={Jaidee, Somchai and Pattanakul, Vijai and Smith, Alex},
+  journal={IEEE Journal of Biomedical and Health Informatics},
+  volume={28},
+  number={3},
+  pages={1450--1462},
+  year={2024},
+  publisher={IEEE}
+}</textarea>
+                </div>
+
+                <!-- Publication 2 -->
+                <div class="pub-item conference bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 rounded-xl p-5 shadow-sm space-y-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 text-[10px] font-bold rounded bg-purple-100 text-purple-800 dark:bg-purple-900/50 dark:text-purple-300">Conference Paper</span>
+                        <span class="text-xs text-slate-400 ml-auto">ปี 2023</span>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white leading-snug">
+                        Jaidee, S., & Tanaka, K. (2023). Low-Resource Cross-Lingual Transfer for Southeast Asian Languages.
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 italic">
+                        Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL 2023), Toronto, Canada.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 pt-2 text-xs">
+                        <a href="#" class="text-blue-600 dark:text-blue-400 font-medium hover:underline flex items-center gap-1">
+                            <i class="fas fa-file-pdf"></i> PDF (Open Access)
+                        </a>
+                        <button onclick="copyBibtex('bib2')" class="text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 flex items-center gap-1">
+                            <i class="fas fa-quote-right"></i> BibTeX
+                        </button>
+                    </div>
+                    <textarea id="bib2" class="hidden">
+@inproceedings{jaidee2023lowresource,
+  title={Low-Resource Cross-Lingual Transfer for Southeast Asian Languages},
+  author={Jaidee, Somchai and Tanaka, Kenji},
+  booktitle={Proceedings of ACL 2023},
+  pages={312--325},
+  year={2023}
+}</textarea>
+                </div>
+
+                <!-- Publication 3 -->
+                <div class="pub-item journal bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 rounded-xl p-5 shadow-sm space-y-2">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 text-[10px] font-bold rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300">Journal Article</span>
+                        <span class="px-2 py-0.5 text-[10px] font-bold rounded bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300">Scopus Q2</span>
+                        <span class="text-xs text-slate-400 ml-auto">ปี 2022</span>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white leading-snug">
+                        สมชาย ใจดี และ คณะ. (2565). การพัฒนาระบบคัดกรองอาการป่วยเบื้องต้นด้วยการวิเคราะห์ข้อความภาษาไทย.
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 italic">
+                        วารสารวิทยาศาสตร์และเทคโนโลยี มหาวิทยาลัยธรรมศาสตร์, ปีที่ 30 ฉบับที่ 2, หน้า 85-98.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 pt-2 text-xs">
+                        <button onclick="copyBibtex('bib3')" class="text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 flex items-center gap-1">
+                            <i class="fas fa-quote-right"></i> BibTeX
+                        </button>
+                    </div>
+                    <textarea id="bib3" class="hidden">
+@article{jaidee2022thai,
+  title={Development of Preliminary Medical Screening System Using Thai Text Analysis},
+  author={Jaidee, Somchai and others},
+  journal={Journal of Science and Technology, Thammasat University},
+  volume={30},
+  number={2},
+  pages={85--98},
+  year={2022}
+}</textarea>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Grants Section -->
+        <section id="grants" class="scroll-mt-24 space-y-6">
+            <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+                <div class="p-2 bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 rounded-lg">
+                    <i class="fas fa-hand-holding-usd text-lg"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white">ทุนวิจัยและโครงการ (Research Grants)</h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Research Grants & Funding Projects</p>
+                </div>
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-2">
+                <!-- Grant Card 1 -->
+                <div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 rounded-xl p-5 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 font-semibold">หัวหน้าโครงการ (PI)</span>
+                            <span class="text-slate-400">2566 - 2568</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base">
+                            โครงการพัฒนาระบบปัญญาประดิษฐ์สกัดสาระสำคัญจากระเบียนประวัติการรักษาเพื่อการสนับสนุนการวินิจฉัยโรค
+                        </h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">
+                            <strong>หน่วยงานให้ทุน:</strong> สำนักงานคณะกรรมการส่งเสริมวิทยาศาสตร์ วิจัยและนวัตกรรม (สวพ.)
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-700/50 mt-4 flex items-center justify-between text-xs">
+                        <span class="text-slate-500">งบประมาณ:</span>
+                        <span class="font-bold text-slate-800 dark:text-slate-200">1,200,000 บาท</span>
+                    </div>
+                </div>
+
+                <!-- Grant Card 2 -->
+                <div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 rounded-xl p-5 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold">ผู้ร่วมวิจัย (Co-PI)</span>
+                            <span class="text-slate-400">2565 - 2566</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base">
+                            การประมวลผลข้อความเพื่อประเมินความพึงพอใจและเสียงสะท้อนของผู้รับบริการสาธารณสุข
+                        </h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">
+                            <strong>หน่วยงานให้ทุน:</strong> กองทุนส่งเสริมวิทยาศาสตร์และเทคโนโลยี
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-700/50 mt-4 flex items-center justify-between text-xs">
+                        <span class="text-slate-500">งบประมาณ:</span>
+                        <span class="font-bold text-slate-800 dark:text-slate-200">500,000 บาท</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teaching & Services Section -->
+        <section id="teaching" class="scroll-mt-24 space-y-6">
+            <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+                <div class="p-2 bg-teal-100 dark:bg-teal-900/40 text-teal-600 dark:text-teal-400 rounded-lg">
+                    <i class="fas fa-chalkboard-teacher text-lg"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white">ภาระงานสอนและบริการวิชาการ</h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Teaching & Academic Services</p>
+                </div>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-2">
+                <!-- Teaching Courses -->
+                <div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 rounded-xl p-5 shadow-sm space-y-3">
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fas fa-book text-teal-500"></i> รายวิชาที่รับผิดชอบ (Courses Taught)
+                    </h3>
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                        <li class="flex justify-between items-center p-2 rounded bg-slate-50 dark:bg-slate-800/80">
+                            <span><strong>CS201:</strong> Data Structures and Algorithms</span>
+                            <span class="text-xs bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded">ป.ตรี</span>
+                        </li>
+                        <li class="flex justify-between items-center p-2 rounded bg-slate-50 dark:bg-slate-800/80">
+                            <span><strong>CS342:</strong> Introduction to Machine Learning</span>
+                            <span class="text-xs bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded">ป.ตรี</span>
+                        </li>
+                        <li class="flex justify-between items-center p-2 rounded bg-slate-50 dark:bg-slate-800/80">
+                            <span><strong>CS615:</strong> Advanced Natural Language Processing</span>
+                            <span class="text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded">ป.โท-เอก</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Academic Services & Peer Review -->
+                <div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 rounded-xl p-5 shadow-sm space-y-3">
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fas fa-award text-amber-500"></i> การเป็นผู้ทรงคุณวุฒิประเมินบทความ (Reviewer)
+                    </h3>
+                    <ul class="list-disc list-inside space-y-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                        <li>IEEE Transactions on Neural Networks and Learning Systems</li>
+                        <li>ACL / EMNLP Conference Reviewer (2022 - Present)</li>
+                        <li>วารสารวิจัยวิทยาการคอมพิวเตอร์และเทคโนโลยีสารสนเทศ</li>
+                        <li>คณะกรรมการตัดสินการแข่งขันพัฒนาโปรแกรมคอมพิวเตอร์แห่งประเทศไทย (NSC)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="scroll-mt-24 space-y-6">
+            <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+                <div class="p-2 bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 rounded-lg">
+                    <i class="fas fa-address-card text-lg"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white">ข้อมูลการติดต่อ</h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Get in Touch</p>
+                </div>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-2">
+                <!-- Info Box -->
+                <div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 rounded-xl p-6 shadow-sm space-y-4">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">ห้องทำงานและที่อยู่</h3>
+                    
+                    <div class="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-building text-blue-500 mt-1"></i>
+                            <div>
+                                <strong>ห้องทำงาน:</strong> CS-408 ชั้น 4 อาคารบรรยายรวมกิตติยา<br>
+                                ภาควิชาวิทยาการคอมพิวเตอร์ คณะวิทยาศาสตร์ มหาวิทยาลัยธรรมศาสตร์ ศูนย์รังสิต
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-blue-500"></i>
+                            <div>
+                                <strong>อีเมล:</strong> somchai.j@cs.tu.ac.th
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-phone text-blue-500"></i>
+                            <div>
+                                <strong>โทรศัพท์:</strong> 02-564-4440 ต่อ 2408
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-clock text-blue-500"></i>
+                            <div>
+                                <strong>Office Hours:</strong> จันทร์ & พุธ 13:30 - 16:00 น. (หรือนัดหมายล่วงหน้า)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Message Note -->
+                <div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 rounded-xl p-6 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">ส่งข้อความถึงอาจารย์</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                            สำหรับนิสิต/นักศึกษา หรือนักวิจัยที่ต้องการติดต่อสอบถามเรื่องการทำวิชาโครงการ วิทยานิพนธ์ หรือความร่วมมือทางวิชาการ
+                        </p>
+                        
+                        <form onsubmit="handleContactSubmit(event)" class="space-y-3">
+                            <input type="text" required placeholder="ชื่อ-นามสกุล ของท่าน" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="email" required placeholder="อีเมลติดต่อกลับ" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <textarea rows="3" required placeholder="ข้อความ / เรื่องที่ต้องการติดต่อ..." class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                            <button type="submit" class="w-full py-2 px-4 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-medium transition-colors">
+                                <i class="fas fa-paper-plane mr-1"></i> ส่งข้อความ
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- GitHub Pages Guide Modal -->
+    <div id="github-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-3">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <i class="fab fa-github text-2xl"></i> วิธีเอาเว็บไซต์ขึ้น GitHub Pages
+                </h3>
+                <button onclick="toggleGithubModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white text-xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p class="font-semibold text-blue-600 dark:text-blue-400">คุณสามารถเปิดใช้งานเว็บไซต์ประวัติส่วนตัวนี้แบบออนไลน์ฟรี 100% ผ่าน GitHub Pages ได้ง่ายๆ ดังนี้:</p>
+                
+                <ol class="list-decimal list-inside space-y-2.5 bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <li><strong>บันทึกไฟล์นี้:</strong> ตั้งชื่อไฟล์นี้ว่า <code class="bg-slate-200 dark:bg-slate-800 px-1.5 py-0.5 rounded text-red-500 font-mono">index.html</code></li>
+                    <li><strong>สมัคร / เข้าสู่ระบบ GitHub:</strong> ไปที่ <a href="https://github.com" target="_blank" class="text-blue-500 underline">github.com</a></li>
+                    <li><strong>สร้าง Repository ใหม่:</strong> กดปุ่ม <span class="font-semibold text-slate-800 dark:text-slate-100">"New"</span> แล้วตั้งชื่อ เช่น <code class="bg-slate-200 dark:bg-slate-800 px-1.5 py-0.5 rounded text-blue-500">my-academic-portfolio</code> (เลือกตั้งค่าเป็น Public)</li>
+                    <li><strong>อัปโหลดไฟล์:</strong> คลิก <span class="font-semibold text-slate-800 dark:text-slate-100">"uploading an existing file"</span> แล้วลากไฟล์ <code class="bg-slate-200 dark:bg-slate-800 px-1.5 py-0.5 rounded text-red-500">index.html</code> ใส่เข้าไป จากนั้นกด <span class="font-semibold text-slate-800 dark:text-slate-100">"Commit changes"</span></li>
+                    <li><strong>เปิดใช้งาน GitHub Pages:</strong>
+                        <ul class="list-disc list-inside pl-4 mt-1 space-y-1 text-slate-500 dark:text-slate-400">
+                            <li>ไปที่แถบเมนู <strong>Settings</strong> ของ Repository นั้น</li>
+                            <li>คลิกเมนู <strong>Pages</strong> ด้านซ้ายมือ</li>
+                            <li>ใต้คำว่า <em>Build and deployment</em> เลือก Source เป็น <strong>Deploy from a branch</strong></li>
+                            <li>เลือก Branch เป็น <strong>main</strong> (หรือ master) และโฟลเดอร์เป็น <strong>/ (root)</strong> แล้วกด Save</li>
+                        </ul>
+                    </li>
+                    <li><strong>เรียบร้อย!</strong> รอประมาณ 1-2 นาที คุณจะได้ลิงก์เว็บไซต์ เช่น <code class="text-emerald-600 dark:text-emerald-400 font-mono">https://username.github.io/my-academic-portfolio</code></li>
+                </ol>
+            </div>
+
+            <div class="pt-2 text-right">
+                <button onclick="toggleGithubModal()" class="px-4 py-2 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 text-xs font-semibold rounded-lg hover:opacity-90">
+                    เข้าใจแล้ว ปิดหน้าต่างนี้
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-6 text-center text-xs text-slate-500 dark:text-slate-400 no-print">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p>© 2026 Assistant Professor Dr. Somchai Jaidee. All rights reserved.</p>
+            <p>Designed with Minimal Modern Style & Tailwind CSS | Ready for GitHub Pages</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Functions for Interactivity -->
+    <script>
+        // Dark / Light Theme Toggle Setup
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            lightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            darkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Publications Filter Functionality
+        function filterPubs(type) {
+            const items = document.querySelectorAll('.pub-item');
+            const tabs = document.querySelectorAll('.pub-tab');
+
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-white', 'dark:bg-slate-700', 'text-slate-900', 'dark:text-white', 'shadow-sm');
+                tab.classList.add('text-slate-600', 'dark:text-slate-400');
+            });
+
+            const activeTab = document.getElementById(`tab-${type}`);
+            if(activeTab) {
+                activeTab.classList.add('bg-white', 'dark:bg-slate-700', 'text-slate-900', 'dark:text-white', 'shadow-sm');
+                activeTab.classList.remove('text-slate-600', 'dark:text-slate-400');
+            }
+
+            items.forEach(item => {
+                if (type === 'all') {
+                    item.style.display = 'block';
+                } else if (item.classList.contains(type)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Copy BibTeX to Clipboard
+        function copyBibtex(id) {
+            const text = document.getElementById(id).value;
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            
+            // Notification toast
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-5 right-5 bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-2 rounded-lg text-xs shadow-lg z-50 flex items-center gap-2';
+            toast.innerHTML = '<i class="fas fa-check-circle text-emerald-400"></i> คัดลอก BibTeX สำเร็จแล้ว!';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
+        }
+
+        // GitHub Modal Toggle
+        function toggleGithubModal() {
+            const modal = document.getElementById('github-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Contact Form Submission Simulation
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            alert('ขอบคุณสำหรับข้อความ! ระบบได้จำลองการส่งข้อความเรียบร้อยแล้ว (ท่านสามารถเชื่อมต่อกับบริการอย่าง Formspree หรือ EmailJS ได้เพิ่มเติม)');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
